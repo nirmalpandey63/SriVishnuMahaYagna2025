@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://vishnu-yagya.vercel.app/sitemap.xml
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /private/
+
+# Allow important pages
+Allow: /#about
+Allow: /#rituals
+Allow: /#registration
+Allow: /#live
+Allow: /#gallery
+Allow: /#contact
