@@ -1,0 +1,19 @@
+{
+  "name": "vishnu-yagya-website",
+  "version": "1.0.0",
+  "description": "श्री विष्णु महायज्ञ Website",
+  "scripts": {
+    "build": "gulp build",
+    "dev": "live-server .",
+    "deploy": "npm run build && vercel --prod"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-concat": "^2.6.1",
+    "del": "^6.1.1",
+    "live-server": "^1.2.2"
+  }
+}
