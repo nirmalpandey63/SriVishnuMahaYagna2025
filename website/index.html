@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="hi">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>श्री विष्णु महा यज्ञ 2025</title><link rel="stylesheet" href="styles.css"/></head><body>
+<div class="top-wrap">
+  <img class="banner" src="assets/banner.png" alt="banner"/>
+  <div class="banner-text"><h1>श्री विष्णु महा यज्ञ 2025</h1><p class="meta">10 नवम्बर 2025 — 18 नवम्बर 2025 | छितौनी, छत्ता — बलिया (U.P.)</p><div class="actions"><a class="btn" href="#volunteer">Volunteer</a><a class="btn" href="#donate">Donate</a><a class="btn outline" href="https://maps.app.goo.gl/CDeqtsKiCW2oT2jW7" target="_blank">Open in Maps</a></div><div id="countdown" class="countdown">Loading...</div></div></div>
+<main class="container">
+<section id="about" class="card"><h2>About the Yagya</h2><p>समस्त ग्रामवासी एवं क्षेत्रवासी द्वारा आयोजित यह महा यज्ञ है। आप सभी आमंत्रित हैं।</p></section>
+<section id="schedule" class="card"><h2>Schedule (Placeholder)</h2><div class="grid"><div class="event">10 Nov — उद्घाटन</div><div class="event">11 Nov — प्रवचन</div><div class="event">...)</div></div></section>
+<section id="donate" class="card donate"><h2>Donate</h2><p>UPI / QR — <strong>Coming Soon</strong></p><button class="btn" onclick="alert('Donate setup coming soon')">Contact Organizer</button></section>
+<section id="gallery" class="card"><h2>Gallery</h2><div class="gallery-grid"><img src="assets/gallery1.jpg" alt="Gallery 1" class="gallery-img"/><img src="assets/gallery2.jpg" alt="Gallery 2" class="gallery-img"/></div></section>
+<section id="volunteer" class="card"><h2>Volunteer</h2><form id="volForm" onsubmit="submitForm(event)"><label>नाम: <input name="name" required/></label><br/><label>मोबाइल: <input name="mobile" required/></label><br/><button class="btn" type="submit">Register</button></form><p>Contact: <a href="tel:+919453244606">9453244606</a></p></section>
+<section class="card"><h2>Venue</h2><p><a href="https://maps.app.goo.gl/CDeqtsKiCW2oT2jW7" target="_blank">Open in Google Maps</a></p><div class="map-wrapper"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7427.2363158123335!2d84.26482459999997!3d25.8175681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3992620937b93e65%3A0x390f21ac0a14b0ed!2sSHREE%20CHHITESHWER%20NATH%20BABA%20CHHITAUNI!5e1!3m2!1sen!2sin!4v1760763921919!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div></section>
+<section class="card" id="receipt"><h2>Sample Receipt</h2><img src="assets/receipt.jpg" style="max-width:100%;border-radius:8px"/></section>
+<section class="card social"><h2>Follow</h2><div class="social-icons"><a href="https://twitter.com/vishnuyagya2025" target="_blank">Twitter</a> <a href="https://facebook.com/vishnuyagya2025" target="_blank">Facebook</a></div></section>
+</main>
+<footer class="footer"><div class="footer-inner"><p>© 2025 — समस्त ग्रामवासी एवं क्षेत्रवासी</p><div class="audio-controls"><button id="muteBtn">🔊 Play Bhajan</button></div></div></footer>
+<audio id="chant" loop autoplay><source src="assets/vishnu_stotam_ringtone.mp3" type="audio/mp3"></audio>
+<script>
+const target = new Date('2025-11-10T06:00:00');
+function updateCountdown(){const now=new Date();const diff=target-now;const el=document.getElementById('countdown');if(diff<=0){el.innerText='यज्ञ प्रारम्भ हो गया है';return;}const d=Math.floor(diff/86400000);const h=Math.floor((diff%86400000)/3600000);const m=Math.floor((diff%3600000)/60000);const s=Math.floor((diff%60000)/1000);el.innerText=d+' दिन '+h+':'+(m<10?('0'+m):m)+':'+(s<10?('0'+s):s);}setInterval(updateCountdown,1000);updateCountdown();
+const chant=document.getElementById('chant');chant.volume=0.10;const muteBtn=document.getElementById('muteBtn');let playing=false;muteBtn.addEventListener('click',()=>{if(!playing){chant.volume=0.15;chant.play();muteBtn.innerText='🔇 Mute Bhajan';playing=true;}else{chant.pause();muteBtn.innerText='🔊 Play Bhajan';playing=false;}});
+function submitForm(e){e.preventDefault();const fm=e.target;alert('धन्यवाद '+fm.name.value+'! आपकी सूचना मिली।');fm.reset();}
+</script></body></html>
