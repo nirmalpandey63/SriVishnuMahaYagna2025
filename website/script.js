@@ -48,7 +48,7 @@ document.addEventListener('click', (e) => {
 // Countdown Timer
 function updateCountdown() {
     // Set target date with Indian timezone (UTC+5:30)
-    const targetDate = new Date('2025-11-10T06:00:00+05:30').getTime();
+    const targetDate = new Date('November 10, 2025 06:00:00 GMT+0530').getTime();
     const now = new Date().getTime();
     const difference = targetDate - now;
 
