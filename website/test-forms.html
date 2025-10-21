@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Test</title>
+</head>
+<body>
+    <h1>Test Forms</h1>
+    
+    <h2>Test Countdown</h2>
+    <div id="countdown-test">
+        <div>Days: <span id="test-days">00</span></div>
+        <div>Hours: <span id="test-hours">00</span></div>
+        <div>Minutes: <span id="test-minutes">00</span></div>
+        <div>Seconds: <span id="test-seconds">00</span></div>
+    </div>
+    
+    <h2>Test Registration Form</h2>
+    <form id="testForm">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="tel" name="mobile" placeholder="Mobile" required>
+        <button type="submit">Test Submit</button>
+    </form>
+    
+    <script>
+        // Test countdown
+        function testCountdown() {
+            const targetDate = new Date('2025-11-10T06:00:00+05:30').getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+            
+            console.log('Test Countdown:', {
+                target: new Date(targetDate),
+                now: new Date(now),
+                diff: difference,
+                days: Math.floor(difference / (1000 * 60 * 60 * 24))
+            });
+            
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                
+                document.getElementById('test-days').textContent = days;
+                document.getElementById('test-hours').textContent = hours;
+                document.getElementById('test-minutes').textContent = minutes;
+                document.getElementById('test-seconds').textContent = seconds;
+            }
+        }
+        
+        setInterval(testCountdown, 1000);
+        testCountdown();
+        
+        // Test form
+        document.getElementById('testForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            console.log('Form data:', data);
+            
+            try {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbypIp2ObQNr0GtLJqNXuAfAZG163LEgk-ZB58S6L5yi_HtKlJETeV0FNAyMUVfggqv49g/exec', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        type: 'test',
+                        name: data.name,
+                        mobile: data.mobile,
+                        timestamp: new Date().toLocaleString()
+                    })
+                });
+                
+                console.log('Response:', response);
+                const result = await response.text();
+                console.log('Result:', result);
+                alert('Test successful: ' + result);
+            } catch (error) {
+                console.error('Test error:', error);
+                alert('Test failed: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbypIp2ObQNr0GtLJqNXuAfAZG163LEgk-ZB58S6L5yi_HtKlJETeV0FNAyMUVfggqv49g/exec';
 
 // Fallback email
-const FALLBACK_EMAIL = 'mailto:info@vishnuyagya.org';
+const FALLBACK_EMAIL = 'mailto:shreechhiteshwarnathbaba@gmail.com';
 
 // Your spreadsheet ID for reference
 const SPREADSHEET_ID = '1xGGoi8ZdUaBqzdy3rd7SIVtHhbi0zog4oUJBOwOOFLE';
@@ -45,18 +45,31 @@ document.getElementById('registrationForm')?.addEventListener('submit', async fu
         return;
     }
     
-    // Use fetch with no-cors mode
-    fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams(data)
-    });
-    
-    alert(`धन्यवाद ${data.name}! आपका पंजीकरण सफल हो गया है।`);
-    this.reset();
+    // Submit to Google Apps Script
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(data)
+        });
+        
+        if (response.ok) {
+            alert(`धन्यवाद ${data.name}! आपका पंजीकरण सफल हो गया है।`);
+            this.reset();
+        } else {
+            throw new Error('Network response was not ok');
+        }
+    } catch (error) {
+        console.error('Registration error:', error);
+        // Fallback to email
+        const subject = 'यज्ञ पंजीकरण - ' + data.name;
+        const body = `नाम: ${data.name}\nमोबाइल: ${data.mobile}\nईमेल: ${data.email}\nपता: ${data.address}`;
+        window.open(`${FALLBACK_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+        alert(`धन्यवाद ${data.name}! कृपया ईमेल भेजें या बाद में पुनः प्रयास करें।`);
+        this.reset();
+    }
 });
 
 // Update contact form handler
@@ -96,22 +109,35 @@ document.getElementById('contactForm')?.addEventListener('submit', async functio
         return;
     }
     
-    // Use fetch with no-cors mode
-    fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams(data)
-    });
-    
-    alert(`धन्यवाद ${data.name}! आपका संदेश प्राप्त हो गया है।`);
-    this.reset();
+    // Submit to Google Apps Script
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(data)
+        });
+        
+        if (response.ok) {
+            alert(`धन्यवाद ${data.name}! आपका संदेश प्राप्त हो गया है।`);
+            this.reset();
+        } else {
+            throw new Error('Network response was not ok');
+        }
+    } catch (error) {
+        console.error('Contact form error:', error);
+        // Fallback to email
+        const subject = 'संपर्क संदेश - ' + data.name;
+        const body = `नाम: ${data.name}\nईमेल: ${data.email}\nफोन: ${data.phone}\nसंदेश: ${data.message}`;
+        window.open(`${FALLBACK_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+        alert(`धन्यवाद ${data.name}! कृपया ईमेल भेजें या बाद में पुनः प्रयास करें।`);
+        this.reset();
+    }
 });
 
 // Enhanced Donation Form Handler
-document.getElementById('donationForm')?.addEventListener('submit', function(e) {
+document.getElementById('donationForm')?.addEventListener('submit', async function(e) {
     e.preventDefault();
     
     const donorName = this.querySelector('[name="donorName"]').value;
@@ -181,16 +207,24 @@ document.getElementById('donationForm')?.addEventListener('submit', function(e) 
     console.log('Enhanced donation data:', data);
     
     // Send to Google Sheets
-    fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams(data)
-    });
-    
-    alert(`धन्यवाद ${donorName}! आपका ₹${amount} का दान ${sankalpText} संकल्प के लिए दर्ज किया गया है।`);
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(data)
+        });
+        
+        if (response.ok) {
+            alert(`धन्यवाद ${donorName}! आपका ₹${amount} का दान ${sankalpText} संकल्प के लिए दर्ज किया गया है।`);
+        } else {
+            throw new Error('Network response was not ok');
+        }
+    } catch (error) {
+        console.error('Donation form error:', error);
+        alert(`दान दर्ज करने में समस्या। कृपया बाद में पुनः प्रयास करें या सीधे मोबाइल पर संपर्क करें।`);
+    }
     
     this.reset();
     document.querySelectorAll('.donation-amount').forEach(a => a.classList.remove('selected'));

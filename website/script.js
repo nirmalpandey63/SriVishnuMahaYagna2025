@@ -47,9 +47,18 @@ document.addEventListener('click', (e) => {
 
 // Countdown Timer
 function updateCountdown() {
-    const targetDate = new Date('2025-11-10T06:00:00').getTime();
+    // Set target date with Indian timezone (UTC+5:30)
+    const targetDate = new Date('2025-11-10T06:00:00+05:30').getTime();
     const now = new Date().getTime();
     const difference = targetDate - now;
+
+    // Debug logging
+    console.log('Countdown Debug:', {
+        targetDate: new Date(targetDate).toLocaleString(),
+        now: new Date(now).toLocaleString(),
+        difference: difference,
+        differenceInDays: Math.floor(difference / (1000 * 60 * 60 * 24))
+    });
 
     if (difference > 0) {
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
@@ -57,13 +66,20 @@ function updateCountdown() {
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-        document.getElementById('days').textContent = days.toString().padStart(2, '0');
-        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        
+        if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
+        if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+        if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
+        if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
     } else {
-        document.querySelector('.countdown-container h3').textContent = 'यज्ञ प्रारंभ हो गया है!';
-        document.querySelector('.countdown').innerHTML = '<div class="celebration">🎉 स्वागत है! 🎉</div>';
+        const titleEl = document.querySelector('.countdown-container h3');
+        const countdownEl = document.querySelector('.countdown');
+        if (titleEl) titleEl.textContent = 'यज्ञ प्रारंभ हो गया है!';
+        if (countdownEl) countdownEl.innerHTML = '<div class="celebration">🎉 स्वागत है! 🎉</div>';
     }
 }
 
