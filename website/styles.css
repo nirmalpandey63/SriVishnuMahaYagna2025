@@ -110,6 +110,11 @@ html {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .hamburger span {
@@ -118,6 +123,8 @@ html {
     background: var(--primary-color);
     margin: 3px 0;
     transition: var(--transition);
+    display: block;
+    pointer-events: none;
 }
 
 /* Hero Section */
@@ -1356,7 +1363,16 @@ section {
 }
 
 /* Responsive Design */
+/* Enhanced Mobile Styles */
 @media (max-width: 768px) {
+    /* Improve touch targets */
+    .hamburger {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     .bhagwat-content {
         grid-template-columns: 1fr;
         gap: 2rem;

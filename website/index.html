@@ -16,19 +16,19 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vishnu-yagya.vercel.app/">
+    <meta property="og:url" content="https://sri-vishnu-maha-yagna2025.vercel.app/">
     <meta property="og:title" content="श्री विष्णु महायज्ञ 2025 | छितौनी छत्ता बलिया">
     <meta property="og:description" content="10-18 नवम्बर 2025 को छितौनी में आयोजित श्री विष्णु महायज्ञ। विश्व शांति और समृद्धि के लिए पवित्र वैदिक अनुष्ठान।">
-    <meta property="og:image" content="https://vishnu-yagya.vercel.app/assets/banner.png">
+    <meta property="og:image" content="https://sri-vishnu-maha-yagna2025.vercel.app/assets/banner.png">
     <meta property="og:locale" content="hi_IN">
     <meta property="og:site_name" content="श्री विष्णु महायज्ञ">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://vishnu-yagya.vercel.app/">
+    <meta property="twitter:url" content="https://sri-vishnu-maha-yagna2025.vercel.app/">
     <meta property="twitter:title" content="श्री विष्णु महायज्ञ 2025 | छितौनी छत्ता बलिया">
     <meta property="twitter:description" content="10-18 नवम्बर 2025 को छितौनी में आयोजित श्री विष्णु महायज्ञ। विश्व शांति और समृद्धि के लिए पवित्र वैदिक अनुष्ठान।">
-    <meta property="twitter:image" content="https://vishnu-yagya.vercel.app/assets/banner.png">
+    <meta property="twitter:image" content="https://sri-vishnu-maha-yagna2025.vercel.app/assets/banner.png">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -61,11 +61,11 @@
       "organizer": {
         "@type": "Organization",
         "name": "समस्त ग्रामवासी एवं क्षेत्रवासी",
-        "url": "https://vishnu-yagya.vercel.app"
+        "url": "https://sri-vishnu-maha-yagna2025.vercel.app"
       },
       "offers": {
         "@type": "Offer",
-        "url": "https://vishnu-yagya.vercel.app/#registration",
+        "url": "https://sri-vishnu-maha-yagna2025.vercel.app/#registration",
         "price": "0",
         "priceCurrency": "INR",
         "availability": "https://schema.org/InStock"
@@ -80,7 +80,16 @@
     <meta name="theme-color" content="#8B0000">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="canonical" href="https://vishnu-yagya.vercel.app/">
+    <link rel="canonical" href="https://sri-vishnu-maha-yagna2025.vercel.app/">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LFRBVV5KBS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-LFRBVV5KBS');
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -669,5 +678,19 @@
     <script src="form-handler.js"></script>
     <!-- <script src="simple-form.js"></script> -->
     <script src="gallery-config.js"></script>
+    <script>
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(function(registrationError) {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
