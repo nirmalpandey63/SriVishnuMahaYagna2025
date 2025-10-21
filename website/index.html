@@ -92,6 +92,7 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="#home">होम</a></li>
+                <li><a href="#bhagwat-katha">भागवत कथा</a></li>
                 <li><a href="#about">यज्ञ के बारे में</a></li>
                 <li><a href="#rituals">अनुष्ठान</a></li>
                 <li><a href="#registration">पंजीकरण</a></li>
@@ -169,7 +170,32 @@
         </div>
     </section>
 
-    <!-- 2. यज्ञ के बारे में (About) Section -->
+    <!-- 2. श्रीमद्भागवत कथा Section -->
+    <section id="bhagwat-katha" class="bhagwat-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">श्रीमद्भागवत कथा</h2>
+                <p class="section-subtitle">पूज्य देवी नेहा सारस्वत जी द्वारा</p>
+            </div>
+            <div class="bhagwat-content">
+                <div class="katha-poster">
+                    <img src="assets/poster.jpeg" alt="श्रीमद्भागवत कथा पोस्टर" class="poster-image" loading="lazy">
+                </div>
+                <div class="kathavachak-info">
+                    <div class="kathavachak-image">
+                        <img src="assets/pujya-devi-Neha-saraswat.jpg" alt="पूज्य देवी नेहा सारस्वत" class="speaker-photo" loading="lazy">
+                    </div>
+                    <div class="kathavachak-details">
+                        <h3>पूज्य देवी नेहा सारस्वत</h3>
+                        <p class="speaker-title">प्रसिद्ध कथावाचक</p>
+                        <p class="speaker-description">भगवान की भक्ति और आध्यात्मिक ज्ञान के प्रसार में समर्पित, पूज्य देवी नेहा सारस्वत जी एक प्रसिद्ध कथावाचक हैं। उनकी मधुर वाणी और गहन ज्ञान से श्रीमद्भागवत की पवित्र कथा सुनने का अवसर प्राप्त करें।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. यज्ञ के बारे में (About) Section -->
     <section id="about" class="about-section">
         <div class="container">
             <div class="section-header">
@@ -249,11 +275,11 @@
                     <h3><i class="fas fa-users"></i> पंडित गण</h3>
                     <div class="priests-grid">
                         <div class="priest-card">
-                            <h4>पं. राम नारायण शास्त्री</h4>
+                            <h4>यज्ञाचार्य श्री अमरेश पांडेय</h4>
                             <p>मुख्य यज्ञाचार्य</p>
                         </div>
                         <div class="priest-card">
-                            <h4>पं. विष्णु दत्त उपाध्याय</h4>
+                            <h4>राधे श्याम पांडेय</h4>
                             <p>सह यज्ञाचार्य</p>
                         </div>
                     </div>
@@ -345,10 +371,6 @@
                                     <i class="fas fa-money-bill-wave"></i>
                                     <span>नकद</span>
                                 </div>
-                                <div class="payment-option" data-value="bank">
-                                    <i class="fas fa-university"></i>
-                                    <span>बैंक</span>
-                                </div>
                                 <div class="payment-option" data-value="cheque">
                                     <i class="fas fa-file-invoice"></i>
                                     <span>चेक</span>
@@ -365,9 +387,14 @@
                         </button>
                     </form>
                     <div class="payment-info">
-                        <p><strong>UPI ID:</strong> vishnuyagya@paytm</p>
-                        <p><strong>खाता:</strong> 1234567890 (SBI)</p>
+                        <p><strong>UPI ID:</strong> bhanudevdash916@okicici</p>
+                        <div class="upi-scanner">
+                            <h4>QR कोड स्कैन करें:</h4>
+                            <img src="assets/UPI-Scanner.jpeg" alt="UPI QR Code Scanner" class="qr-code" loading="lazy">
+                            <p class="scanner-note">अपने UPI ऐप से QR कोड स्कैन करके तुरंत दान करें</p>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -433,14 +460,14 @@
                             <i class="fas fa-search-plus"></i>
                         </div>
                     </div>
-                    <div class="gallery-item" onclick="openModal('assets/gallery11.jpg')">
-                        <img src="assets/gallery11.jpg" alt="यज्ञ तस्वीर 3">
+                    <div class="gallery-item" onclick="openModal('assets/gallery11.jpeg')">
+                        <img src="assets/gallery11.jpeg" alt="यज्ञ तस्वीर 3">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
                     </div>
-                    <div class="gallery-item" onclick="openModal('assets/gallery20.jpg')">
-                        <img src="assets/gallery20.jpg" alt="यज्ञ तस्वीर 4">
+                    <div class="gallery-item" onclick="openModal('assets/gallery20.jpeg')">
+                        <img src="assets/gallery20.jpeg" alt="यज्ञ तस्वीर 4">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
@@ -471,7 +498,7 @@
                         </div>
                         <div class="contact-details">
                             <h4>पता</h4>
-                            <p>छितौनी, छत्ता<br>बलिया, उत्तर प्रदेश - 277001</p>
+                            <p><a href="https://www.google.com/maps/place/SHREE+CHHITESHWER+NATH+BABA+CHHITAUNI/@25.8175681,84.26482459999997,17z" target="_blank">छितौनी, छत्ता<br>बलिया, उत्तर प्रदेश - 277001</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -489,16 +516,17 @@
                         </div>
                         <div class="contact-details">
                             <h4>ईमेल</h4>
-                            <p><a href="mailto:info@vishnuyagya.org">info@vishnuyagya.org</a></p>
+                            <p><a href="mailto:shreechhiteshwarnathbaba@gmail.com">shreechhiteshwarnathbaba@gmail.com</a></p>
                         </div>
                     </div>
                     <div class="social-links">
                         <h4>सोशल मीडिया</h4>
                         <div class="social-icons">
-                            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://www.facebook.com/manojdubey875/" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+                            <a href="https://www.youtube.com/@shreechhiteshwarnathbaba" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.instagram.com/shreechhiteshwarnathbaba/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="https://twitter.com/chhiteshwarbaba" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="https://wa.me/919453244606" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
                         </div>
                     </div>
                 </div>
@@ -611,9 +639,9 @@
                 </div>
                 <div class="footer-section">
                     <h4>संपर्क</h4>
-                    <p><i class="fas fa-phone"></i> +91 94532 44606</p>
-                    <p><i class="fas fa-envelope"></i> info@vishnuyagya.org</p>
-                    <p><i class="fas fa-map-marker-alt"></i> छितौनी, बलिया (U.P.)</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+919453244606">+91 94532 44606</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:shreechhiteshwarnathbaba@gmail.com">shreechhiteshwarnathbaba@gmail.com</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> <a href="https://www.google.com/maps/place/SHREE+CHHITESHWER+NATH+BABA+CHHITAUNI/@25.8175681,84.26482459999997,17z" target="_blank">छितौनी, बलिया (U.P.)</a></p>
                 </div>
             </div>
             <div class="footer-bottom">

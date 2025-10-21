@@ -3,8 +3,8 @@ const GALLERY_CONFIG = {
     photos: [
         { src: 'assets/gallery1.jpg', alt: 'यज्ञ तस्वीर 1' },
         { src: 'assets/gallery2.jpg', alt: 'यज्ञ तस्वीर 2' },
-        { src: 'assets/gallery11.jpg', alt: 'यज्ञ तस्वीर 3' },
-        { src: 'assets/gallery20.jpg', alt: 'यज्ञ तस्वीर 4' },
+        { src: 'assets/gallery11.jpeg', alt: 'यज्ञ तस्वीर 3' },
+        { src: 'assets/gallery20.jpeg', alt: 'यज्ञ तस्वीर 4' },
         { src: 'assets/gallery22.jpg', alt: 'यज्ञ तस्वीर 5' }
         // Add new images here
     ],

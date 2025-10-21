@@ -158,12 +158,7 @@ document.getElementById('donationForm')?.addEventListener('submit', function(e) 
             alert('कृपया सही UPI Transaction ID दर्ज करें (12+ अक्षर)');
             return;
         }
-    } else if (paymentMode === 'bank') {
-        if (!referenceId || referenceId.length < 6) {
-            alert('कृपया सही Bank Reference Number दर्ज करें (6+ अक्षर)');
-            return;
-        }
-    } else if (paymentMode === 'cheque') {
+    }  else if (paymentMode === 'cheque') {
         if (!referenceId || !/^\d{6,10}$/.test(referenceId)) {
             alert('कृपया सही Cheque Number दर्ज करें (6-10 अंक)');
             return;
@@ -224,12 +219,7 @@ function updateReferenceField(paymentType) {
         referenceInput.required = true;
         referenceLabel.textContent = 'UPI Transaction ID *';
         referenceInput.placeholder = 'UPI Transaction ID';
-    } else if (paymentType === 'bank') {
-        referenceField.style.display = 'block';
-        referenceInput.required = true;
-        referenceLabel.textContent = 'Bank Reference Number *';
-        referenceInput.placeholder = 'Bank Reference Number';
-    } else if (paymentType === 'cheque') {
+    }  else if (paymentType === 'cheque') {
         referenceField.style.display = 'block';
         referenceInput.required = true;
         referenceLabel.textContent = 'Cheque Number *';
