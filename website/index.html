@@ -745,6 +745,161 @@ document.getElementById('registrationForm')?.addEventListener('submit', async fu
     }
 });
 
+// Contact Form Handler
+document.getElementById('contactForm')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const name = this.querySelector('[name="name"]').value;
+    const email = this.querySelector('[name="email"]').value;
+    const phone = this.querySelector('[name="phone"]').value;
+    const message = this.querySelector('[name="message"]').value;
+    
+    if (!name || !email || !message) {
+        alert('कृपया आवश्यक फील्ड भरें');
+        return;
+    }
+    
+    try {
+        const response = await fetch(SCRIPT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                type: 'contact',
+                name: name,
+                email: email,
+                phone: phone,
+                message: message,
+                timestamp: new Date().toLocaleString()
+            })
+        });
+        
+        if (response.ok) {
+            alert(`धन्यवाद ${name}! आपका संदेश प्राप्त हो गया है।`);
+            this.reset();
+        } else {
+            throw new Error('Server error');
+        }
+    } catch (error) {
+        const emailUrl = `mailto:shreechhiteshwarnathbaba@gmail.com?subject=संपर्क - ${name}&body=नाम: ${name}%0Aईमेल: ${email}%0Aफोन: ${phone}%0Aसंदेश: ${message}`;
+        window.open(emailUrl);
+        alert(`${name}, कृपया ईमेल भेजें या बाद में पुनः प्रयास करें।`);
+        this.reset();
+    }
+});
+
+// Donation Form Handler
+document.getElementById('donationForm')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const donorName = this.querySelector('[name="donorName"]').value;
+    const donorMobile = this.querySelector('[name="donorMobile"]').value;
+    const paymentMode = this.querySelector('[name="paymentMode"]').value;
+    const referenceId = this.querySelector('[name="referenceId"]').value;
+    const selectedSankalp = this.querySelector('input[name="sankalp"]:checked');
+    
+    // Get amount
+    const selectedAmount = document.querySelector('.donation-amount.selected');
+    const customAmount = document.getElementById('customAmount');
+    
+    let amount = 0;
+    if (selectedAmount) {
+        amount = parseInt(selectedAmount.dataset.amount);
+    } else if (customAmount && customAmount.value) {
+        amount = parseInt(customAmount.value);
+    }
+    
+    // Validation
+    if (!donorName || !donorMobile) {
+        alert('कृपया नाम और मोबाइल भरें');
+        return;
+    }
+    
+    if (amount === 0) {
+        alert('कृपया दान की राशि चुनें');
+        return;
+    }
+    
+    if (!paymentMode) {
+        alert('कृपया भुगतान का तरीका चुनें');
+        return;
+    }
+    
+    const sankalpText = selectedSankalp ? selectedSankalp.value : 'सामान्य';
+    
+    try {
+        const response = await fetch(SCRIPT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                type: 'donation',
+                name: donorName,
+                mobile: donorMobile,
+                email: '',
+                address: paymentMode,
+                message: `Amount: ₹${amount}, Sankalp: ${sankalpText}, Payment: ${paymentMode}, Ref: ${referenceId || 'N/A'}`,
+                timestamp: new Date().toLocaleString()
+            })
+        });
+        
+        if (response.ok) {
+            alert(`धन्यवाद ${donorName}! आपका ₹${amount} का दान ${sankalpText} संकल्प के लिए दर्ज किया गया है।`);
+            this.reset();
+            document.querySelectorAll('.donation-amount').forEach(a => a.classList.remove('selected'));
+        } else {
+            throw new Error('Server error');
+        }
+    } catch (error) {
+        alert('दान दर्ज करने में समस्या। कृपया बाद में पुनः प्रयास करें।');
+    }
+});
+
+// Donation Amount Selection
+document.querySelectorAll('.donation-amount').forEach(amount => {
+    amount.addEventListener('click', function() {
+        document.querySelectorAll('.donation-amount').forEach(a => a.classList.remove('selected'));
+        this.classList.add('selected');
+        const customAmount = document.getElementById('customAmount');
+        if (customAmount) customAmount.value = '';
+    });
+});
+
+// Custom amount input handler
+document.getElementById('customAmount')?.addEventListener('input', function() {
+    if (this.value) {
+        document.querySelectorAll('.donation-amount').forEach(a => a.classList.remove('selected'));
+    }
+});
+
+// Payment option selection
+document.querySelectorAll('.payment-option').forEach(option => {
+    option.addEventListener('click', function() {
+        document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+        this.classList.add('selected');
+        
+        const paymentMode = document.getElementById('payment-mode');
+        paymentMode.value = this.dataset.value;
+        
+        const referenceField = document.getElementById('reference-field');
+        const referenceInput = document.getElementById('reference-id');
+        const referenceLabel = document.getElementById('reference-label');
+        
+        if (this.dataset.value === 'upi') {
+            referenceField.style.display = 'block';
+            referenceInput.required = true;
+            referenceLabel.textContent = 'UPI Transaction ID *';
+            referenceInput.placeholder = 'UPI Transaction ID';
+        } else if (this.dataset.value === 'cheque') {
+            referenceField.style.display = 'block';
+            referenceInput.required = true;
+            referenceLabel.textContent = 'Cheque Number *';
+            referenceInput.placeholder = 'Cheque Number';
+        } else {
+            referenceField.style.display = 'none';
+            referenceInput.required = false;
+            referenceInput.value = '';
+        }
+    });
+});
+
 // Mobile Navigation
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
@@ -755,6 +910,47 @@ if (hamburger) {
         navMenu.classList.toggle('active');
     });
 }
+
+// Audio Controls
+const audioBtn = document.getElementById('audioBtn');
+const bgAudio = document.getElementById('bgAudio');
+let isPlaying = false;
+
+if (audioBtn && bgAudio) {
+    bgAudio.volume = 0.3;
+    audioBtn.addEventListener('click', () => {
+        if (!isPlaying) {
+            bgAudio.play().then(() => {
+                isPlaying = true;
+                audioBtn.innerHTML = '<i class="fas fa-pause"></i> भजन रोकें';
+            }).catch(error => {
+                alert('ऑडियो चलाने के लिए पहले पेज पर क्लिक करें');
+            });
+        } else {
+            bgAudio.pause();
+            isPlaying = false;
+            audioBtn.innerHTML = '<i class="fas fa-play"></i> भजन सुनें';
+        }
+    });
+}
+
+// Live Stream Notifications
+function enableNotifications() {
+    if ('Notification' in window) {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                alert('अधिसूचना चालू हो गई! यज्ञ शुरू होने पर आपको सूचना मिलेगी।');
+            } else {
+                alert('अधिसूचना की अनुमति नहीं मिली');
+            }
+        });
+    } else {
+        alert('आपका ब्राउज़र अधिसूचना का समर्थन नहीं करता');
+    }
+}
+
+// Make function global for onclick
+window.enableNotifications = enableNotifications;
 
 // Gallery Modal
 function openModal(imageSrc) {
