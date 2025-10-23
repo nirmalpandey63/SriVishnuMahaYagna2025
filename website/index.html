@@ -717,6 +717,17 @@ document.getElementById('registrationForm')?.addEventListener('submit', async fu
         return;
     }
     
+    if (!/^[6-9]\d{9}$/.test(mobile)) {
+        alert('कृपया सही मोबाइल नंबर दर्ज करें (10 अंक)');
+        return;
+    }
+    
+    // Show loading
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> पंजीकरण हो रहा है...';
+    submitBtn.disabled = true;
+    
     try {
         const response = await fetch(SCRIPT_URL, {
             method: 'POST',
@@ -742,6 +753,10 @@ document.getElementById('registrationForm')?.addEventListener('submit', async fu
         window.open(emailUrl);
         alert(`${name}, कृपया ईमेल भेजें या बाद में पुनः प्रयास करें।`);
         this.reset();
+    } finally {
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
     }
 });
 
@@ -757,6 +772,17 @@ document.getElementById('contactForm')?.addEventListener('submit', async functio
         alert('कृपया आवश्यक फील्ड भरें');
         return;
     }
+    
+    if (phone && !/^[6-9]\d{9}$/.test(phone)) {
+        alert('कृपया सही मोबाइल नंबर दर्ज करें (10 अंक)');
+        return;
+    }
+    
+    // Show loading
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> संदेश भेजा जा रहा है...';
+    submitBtn.disabled = true;
     
     try {
         const response = await fetch(SCRIPT_URL, {
@@ -783,6 +809,10 @@ document.getElementById('contactForm')?.addEventListener('submit', async functio
         window.open(emailUrl);
         alert(`${name}, कृपया ईमेल भेजें या बाद में पुनः प्रयास करें।`);
         this.reset();
+    } finally {
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
     }
 });
 
@@ -844,6 +874,12 @@ document.getElementById('donationForm')?.addEventListener('submit', async functi
     
     const sankalpText = selectedSankalp ? selectedSankalp.value : 'सामान्य';
     
+    // Show loading
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> दान दर्ज हो रहा है...';
+    submitBtn.disabled = true;
+    
     try {
         const response = await fetch(SCRIPT_URL, {
             method: 'POST',
@@ -868,6 +904,10 @@ document.getElementById('donationForm')?.addEventListener('submit', async functi
         }
     } catch (error) {
         alert('दान दर्ज करने में समस्या। कृपया बाद में पुनः प्रयास करें।');
+    } finally {
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
     }
 });
 
@@ -992,24 +1032,7 @@ document.querySelectorAll('input[type="tel"]').forEach(input => {
     });
 });
 
-// Add validation to registration and contact forms
-document.getElementById('registrationForm')?.addEventListener('submit', function(e) {
-    const mobile = this.querySelector('[name="mobile"]').value;
-    if (mobile && !/^[6-9]\d{9}$/.test(mobile)) {
-        e.preventDefault();
-        alert('कृपया सही मोबाइल नंबर दर्ज करें (10 अंक)');
-        return false;
-    }
-}, true); // Use capture to run before other handlers
 
-document.getElementById('contactForm')?.addEventListener('submit', function(e) {
-    const phone = this.querySelector('[name="phone"]').value;
-    if (phone && !/^[6-9]\d{9}$/.test(phone)) {
-        e.preventDefault();
-        alert('कृपया सही मोबाइल नंबर दर्ज करें (10 अंक)');
-        return false;
-    }
-}, true);
 
 // Gallery Modal
 function openModal(imageSrc) {
