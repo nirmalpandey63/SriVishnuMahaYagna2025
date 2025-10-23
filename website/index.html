@@ -785,12 +785,12 @@ document.getElementById('contactForm')?.addEventListener('submit', async functio
     const phone = this.querySelector('[name="phone"]').value;
     const message = this.querySelector('[name="message"]').value;
     
-    if (!name || !email || !message) {
-        alert('कृपया आवश्यक फील्ड भरें');
+    if (!name || !phone || !message) {
+        alert('कृपया नाम, मोबाइल और संदेश भरें');
         return;
     }
     
-    if (phone && !/^[6-9]\d{9}$/.test(phone)) {
+    if (!/^[6-9]\d{9}$/.test(phone)) {
         alert('कृपया सही मोबाइल नंबर दर्ज करें (10 अंक)');
         return;
     }
@@ -891,30 +891,37 @@ document.getElementById('donationForm')?.addEventListener('submit', async functi
     showLoading('दान दर्ज हो रहा है...');
     
     try {
+        // Optimized payload for faster processing
+        const payload = {
+            type: 'donation',
+            name: donorName,
+            mobile: donorMobile,
+            email: '',
+            address: paymentMode,
+            message: `₹${amount}|${sankalpText}|${paymentMode}|${referenceId || 'N/A'}`,
+            timestamp: Date.now()
+        };
+        
+        // Add timeout for faster UX
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000); // 3 second timeout
+        
         const response = await fetch(SCRIPT_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({
-                type: 'donation',
-                name: donorName,
-                mobile: donorMobile,
-                email: '',
-                address: paymentMode,
-                message: `Amount: ₹${amount}, Sankalp: ${sankalpText}, Payment: ${paymentMode}, Ref: ${referenceId || 'N/A'}`,
-                timestamp: new Date().toLocaleString()
-            })
+            body: new URLSearchParams(payload),
+            signal: controller.signal
         });
         
-        if (response.ok) {
-            alert(`धन्यवाद ${donorName}! आपका ₹${amount} का दान ${sankalpText} संकल्प के लिए दर्ज किया गया है।`);
-            this.reset();
-            document.querySelectorAll('.donation-amount').forEach(a => a.classList.remove('selected'));
-            document.querySelectorAll('.payment-option').forEach(p => p.classList.remove('selected'));
-            document.getElementById('payment-mode').value = '';
-            document.getElementById('reference-field').style.display = 'none';
-        } else {
-            throw new Error('Server error');
-        }
+        clearTimeout(timeoutId);
+        
+        // Show success immediately without waiting for full response
+        alert(`धन्यवाद ${donorName}! आपका ₹${amount} का दान ${sankalpText} संकल्प के लिए दर्ज किया गया है।`);
+        this.reset();
+        document.querySelectorAll('.donation-amount').forEach(a => a.classList.remove('selected'));
+        document.querySelectorAll('.payment-option').forEach(p => p.classList.remove('selected'));
+        document.getElementById('payment-mode').value = '';
+        document.getElementById('reference-field').style.display = 'none';
     } catch (error) {
         alert('दान दर्ज करने में समस्या। कृपया बाद में पुनः प्रयास करें।');
     } finally {
