@@ -135,7 +135,7 @@
                     </div>
                     <div class="detail-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>छितौनी, छत्ता - बलिया (U.P.)</span>
+                        <span><a href="https://www.google.com/maps/place/SHREE+CHHITESHWER+NATH+BABA+CHHITAUNI/@25.8175681,84.26482459999997,17z" target="_blank" style="color: white; text-decoration: none;">छितौनी, छाता बलिया (U.P.)</a></span>
                     </div>
                 </div>
                 <div class="countdown-container">
@@ -507,7 +507,7 @@
                         </div>
                         <div class="contact-details">
                             <h4>पता</h4>
-                            <p><a href="https://www.google.com/maps/place/SHREE+CHHITESHWER+NATH+BABA+CHHITAUNI/@25.8175681,84.26482459999997,17z" target="_blank">छितौनी, छत्ता<br>बलिया, उत्तर प्रदेश - 277001</a></p>
+                            <p><a href="https://www.google.com/maps/place/SHREE+CHHITESHWER+NATH+BABA+CHHITAUNI/@25.8175681,84.26482459999997,17z" target="_blank">छितौनी, छाता<br>बलिया, उत्तर प्रदेश - 277001</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -650,7 +650,7 @@
                     <h4>संपर्क</h4>
                     <p><i class="fas fa-phone"></i> <a href="tel:+919453244606">+91 94532 44606</a></p>
                     <p><i class="fas fa-envelope"></i> <a href="mailto:shreechhiteshwarnathbaba@gmail.com">shreechhiteshwarnathbaba@gmail.com</a></p>
-                    <p><i class="fas fa-map-marker-alt"></i> <a href="https://www.google.com/maps/place/SHREE+CHHITESHWER+NATH+BABA+CHHITAUNI/@25.8175681,84.26482459999997,17z" target="_blank">छितौनी, बलिया (U.P.)</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> <a href="https://www.google.com/maps/place/SHREE+CHHITESHWER+NATH+BABA+CHHITAUNI/@25.8175681,84.26482459999997,17z" target="_blank">छितौनी, छाता बलिया (U.P.)</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -823,6 +823,25 @@ document.getElementById('donationForm')?.addEventListener('submit', async functi
         return;
     }
     
+    // Validate mobile number (10 digits, starts with 6-9)
+    if (!/^[6-9]\d{9}$/.test(donorMobile)) {
+        alert('कृपया सही मोबाइल नंबर दर्ज करें (10 अंक)');
+        return;
+    }
+    
+    // Validate reference based on payment mode
+    if (paymentMode === 'upi') {
+        if (!referenceId || referenceId.length < 12) {
+            alert('कृपया सही UPI Transaction ID दर्ज करें (12+ अक्षर)');
+            return;
+        }
+    } else if (paymentMode === 'cheque') {
+        if (!referenceId || !/^\d{6,10}$/.test(referenceId)) {
+            alert('कृपया सही Cheque Number दर्ज करें (6-10 अंक)');
+            return;
+        }
+    }
+    
     const sankalpText = selectedSankalp ? selectedSankalp.value : 'सामान्य';
     
     try {
@@ -951,6 +970,46 @@ function enableNotifications() {
 
 // Make function global for onclick
 window.enableNotifications = enableNotifications;
+
+// Phone number validation and formatting
+document.querySelectorAll('input[type="tel"]').forEach(input => {
+    // Restrict input to numbers only and max 10 digits
+    input.addEventListener('input', function() {
+        let value = this.value.replace(/\D/g, ''); // Remove non-digits
+        if (value.length > 10) value = value.slice(0, 10); // Limit to 10 digits
+        this.value = value;
+    });
+    
+    // Validate on blur
+    input.addEventListener('blur', function() {
+        if (this.value && !/^[6-9]\d{9}$/.test(this.value)) {
+            this.style.borderColor = '#ff4444';
+            this.setCustomValidity('कृपया सही मोबाइल नंबर दर्ज करें (10 अंक, 6-9 से शुरू)');
+        } else {
+            this.style.borderColor = '#e0e0e0';
+            this.setCustomValidity('');
+        }
+    });
+});
+
+// Add validation to registration and contact forms
+document.getElementById('registrationForm')?.addEventListener('submit', function(e) {
+    const mobile = this.querySelector('[name="mobile"]').value;
+    if (mobile && !/^[6-9]\d{9}$/.test(mobile)) {
+        e.preventDefault();
+        alert('कृपया सही मोबाइल नंबर दर्ज करें (10 अंक)');
+        return false;
+    }
+}, true); // Use capture to run before other handlers
+
+document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+    const phone = this.querySelector('[name="phone"]').value;
+    if (phone && !/^[6-9]\d{9}$/.test(phone)) {
+        e.preventDefault();
+        alert('कृपया सही मोबाइल नंबर दर्ज करें (10 अंक)');
+        return false;
+    }
+}, true);
 
 // Gallery Modal
 function openModal(imageSrc) {
