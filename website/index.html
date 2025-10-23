@@ -909,6 +909,9 @@ document.getElementById('donationForm')?.addEventListener('submit', async functi
             alert(`धन्यवाद ${donorName}! आपका ₹${amount} का दान ${sankalpText} संकल्प के लिए दर्ज किया गया है।`);
             this.reset();
             document.querySelectorAll('.donation-amount').forEach(a => a.classList.remove('selected'));
+            document.querySelectorAll('.payment-option').forEach(p => p.classList.remove('selected'));
+            document.getElementById('payment-mode').value = '';
+            document.getElementById('reference-field').style.display = 'none';
         } else {
             throw new Error('Server error');
         }
