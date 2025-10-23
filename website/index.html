@@ -674,6 +674,14 @@
         <source src="assets/vishnu_stotam_ringtone.mp3" type="audio/mp3">
     </audio>
 
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;">
+        <div style="background:white; padding:30px; border-radius:10px; text-align:center; box-shadow:0 4px 20px rgba(0,0,0,0.3);">
+            <i class="fas fa-spinner fa-spin" style="font-size:40px; color:#8B0000; margin-bottom:15px;"></i>
+            <div id="loadingText" style="font-size:18px; color:#333; font-weight:500;">प्रक्रिया हो रही है...</div>
+        </div>
+    </div>
+
     <script>
 // Countdown Timer
 function updateCountdown() {
@@ -702,6 +710,19 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
+// Loading Overlay Functions
+function showLoading(message) {
+    const overlay = document.getElementById('loadingOverlay');
+    const text = document.getElementById('loadingText');
+    text.textContent = message;
+    overlay.style.display = 'flex';
+}
+
+function hideLoading() {
+    const overlay = document.getElementById('loadingOverlay');
+    overlay.style.display = 'none';
+}
+
 // Form Handler
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbypIp2ObQNr0GtLJqNXuAfAZG163LEgk-ZB58S6L5yi_HtKlJETeV0FNAyMUVfggqv49g/exec';
 
@@ -722,11 +743,8 @@ document.getElementById('registrationForm')?.addEventListener('submit', async fu
         return;
     }
     
-    // Show loading
-    const submitBtn = this.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> पंजीकरण हो रहा है...';
-    submitBtn.disabled = true;
+    // Show loading overlay
+    showLoading('पंजीकरण हो रहा है...');
     
     try {
         const response = await fetch(SCRIPT_URL, {
@@ -754,9 +772,8 @@ document.getElementById('registrationForm')?.addEventListener('submit', async fu
         alert(`${name}, कृपया ईमेल भेजें या बाद में पुनः प्रयास करें।`);
         this.reset();
     } finally {
-        // Reset button
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
+        // Hide loading overlay
+        hideLoading();
     }
 });
 
@@ -778,11 +795,8 @@ document.getElementById('contactForm')?.addEventListener('submit', async functio
         return;
     }
     
-    // Show loading
-    const submitBtn = this.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> संदेश भेजा जा रहा है...';
-    submitBtn.disabled = true;
+    // Show loading overlay
+    showLoading('संदेश भेजा जा रहा है...');
     
     try {
         const response = await fetch(SCRIPT_URL, {
@@ -810,9 +824,8 @@ document.getElementById('contactForm')?.addEventListener('submit', async functio
         alert(`${name}, कृपया ईमेल भेजें या बाद में पुनः प्रयास करें।`);
         this.reset();
     } finally {
-        // Reset button
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
+        // Hide loading overlay
+        hideLoading();
     }
 });
 
@@ -874,11 +887,8 @@ document.getElementById('donationForm')?.addEventListener('submit', async functi
     
     const sankalpText = selectedSankalp ? selectedSankalp.value : 'सामान्य';
     
-    // Show loading
-    const submitBtn = this.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> दान दर्ज हो रहा है...';
-    submitBtn.disabled = true;
+    // Show loading overlay
+    showLoading('दान दर्ज हो रहा है...');
     
     try {
         const response = await fetch(SCRIPT_URL, {
@@ -905,9 +915,8 @@ document.getElementById('donationForm')?.addEventListener('submit', async functi
     } catch (error) {
         alert('दान दर्ज करने में समस्या। कृपया बाद में पुनः प्रयास करें।');
     } finally {
-        // Reset button
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
+        // Hide loading overlay
+        hideLoading();;
     }
 });
 
