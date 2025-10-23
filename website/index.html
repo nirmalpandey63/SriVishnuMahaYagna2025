@@ -675,7 +675,6 @@
     </audio>
 
     <script>
-// Main deployment fix - Updated
 // Countdown Timer
 function updateCountdown() {
     const targetDate = new Date('November 10, 2025 06:00:00 GMT+0530').getTime();
@@ -718,11 +717,6 @@ document.getElementById('registrationForm')?.addEventListener('submit', async fu
         return;
     }
     
-    if (!/^[6-9]\d{9}$/.test(mobile)) {
-        alert('कृपया सही मोबाइल नंबर दर्ज करें (10 अंक)');
-        return;
-    }
-    
     try {
         const response = await fetch(SCRIPT_URL, {
             method: 'POST',
@@ -761,11 +755,6 @@ document.getElementById('contactForm')?.addEventListener('submit', async functio
     
     if (!name || !email || !message) {
         alert('कृपया आवश्यक फील्ड भरें');
-        return;
-    }
-    
-    if (phone && !/^[6-9]\d{9}$/.test(phone)) {
-        alert('कृपया सही मोबाइल नंबर दर्ज करें (10 अंक)');
         return;
     }
     
@@ -1003,7 +992,24 @@ document.querySelectorAll('input[type="tel"]').forEach(input => {
     });
 });
 
+// Add validation to registration and contact forms
+document.getElementById('registrationForm')?.addEventListener('submit', function(e) {
+    const mobile = this.querySelector('[name="mobile"]').value;
+    if (mobile && !/^[6-9]\d{9}$/.test(mobile)) {
+        e.preventDefault();
+        alert('कृपया सही मोबाइल नंबर दर्ज करें (10 अंक)');
+        return false;
+    }
+}, true); // Use capture to run before other handlers
 
+document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+    const phone = this.querySelector('[name="phone"]').value;
+    if (phone && !/^[6-9]\d{9}$/.test(phone)) {
+        e.preventDefault();
+        alert('कृपया सही मोबाइल नंबर दर्ज करें (10 अंक)');
+        return false;
+    }
+}, true);
 
 // Gallery Modal
 function openModal(imageSrc) {
