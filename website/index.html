@@ -899,7 +899,7 @@ document.getElementById('donationForm')?.addEventListener('submit', async functi
             email: '',
             address: paymentMode,
             message: `₹${amount}|${sankalpText}|${paymentMode}|${referenceId || 'N/A'}`,
-            timestamp: Date.now()
+            timestamp: new Date().toLocaleString('hi-IN')
         };
         
         // Add timeout for faster UX
