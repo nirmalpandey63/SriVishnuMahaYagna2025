@@ -488,40 +488,62 @@
         </div>
     </section>
 
-    <!-- 5. लाइव स्ट्रीमिंग (Live Streaming) -->
-    <section id="live" class="live-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">लाइव स्ट्रीमिंग</h2>
-                <p class="section-subtitle">घर बैठे यज्ञ का लाभ उठाएं</p>
-            </div>
-            <div class="live-content">
-                <div class="live-player">
-                    <div class="video-placeholder">
-                        <i class="fas fa-video"></i>
-                        <h3>लाइव स्ट्रीम जल्द ही शुरू होगी</h3>
-                        <p>यज्ञ के दिनों में यहाँ लाइव प्रसारण देखें</p>
-                        <button class="btn btn-primary" onclick="enableNotifications()">
-                            <i class="fas fa-bell"></i> अधिसूचना चालू करें
-                        </button>
-                    </div>
-                </div>
-                <div class="live-schedule">
-                    <h3>प्रसारण समय</h3>
-                    <div class="schedule-list">
-                        <div class="schedule-time">
-                            <span class="time">प्रातः 6:00 - 9:00</span>
-                            <span class="event">प्रातःकालीन आरती और हवन</span>
-                        </div>
-                        <div class="schedule-time">
-                            <span class="time">सायं 6:00 - 8:00</span>
-                            <span class="event">संध्या आरती और भजन</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+   <!-- 🌺 लाइव स्ट्रीमिंग (Live Streaming) -->
+<section id="live" class="live-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">लाइव स्ट्रीमिंग</h2>
+      <p class="section-subtitle">घर बैठे यज्ञ का लाभ उठाएं</p>
+    </div>
+
+    <div class="live-content">
+      <div class="live-player" id="livePlayer">
+        <!-- 🎥 Auto Live Embed -->
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
+          <iframe
+            id="liveFrame"
+            src="https://www.youtube.com/embed/live_stream?channel=UC8DMg4hYzCfnE1ZpGAGh1tQ"
+            title="देवी निधि सरस्वती जी लाइव प्रवचन"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;">
+          </iframe>
         </div>
-    </section>
+      </div>
+
+      <div class="live-schedule">
+        <h3>📅 प्रसारण समय</h3>
+        <div class="schedule-list">
+          <div class="schedule-time">
+            <span class="time">प्रातः 6:00 - 9:00</span>
+            <span class="event">प्रातःकालीन आरती और हवन</span>
+          </div>
+          <div class="schedule-time">
+            <span class="time">सायं 6:00 - 8:00</span>
+            <span class="event">संध्या आरती और भजन</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ✅ Optional fallback if live not started
+document.addEventListener("DOMContentLoaded", function() {
+  const iframe = document.getElementById("liveFrame");
+  iframe.addEventListener("error", () => {
+    document.getElementById("livePlayer").innerHTML = `
+      <div class="video-placeholder">
+        <i class="fas fa-video"></i>
+        <h3>लाइव स्ट्रीम जल्द ही शुरू होगी</h3>
+        <p>देवी निधि सरस्वती जी का प्रवचन यहीं देखें</p>
+      </div>`;
+  });
+});
+</script>
+
 
     <!-- 6. गैलरी (Gallery) -->
     <section id="gallery" class="gallery-section">
@@ -631,14 +653,12 @@
     <!-- 🎥 Video Carousel -->
     <div class="carousel" id="carousel-day1-videos">
       <div class="carousel-track">
-
         <!-- 🎬 Video 1 -->
         <div class="video-slide">
           <iframe 
-            src="https://www.youtube.com/embed/S6QJio8BdnA?rel=0&modestbranding=1&showinfo=0"
+            src="https://www.youtube.com/embed/S6QJio8BdnA?rel=0&modestbranding=1"
             title="श्री विष्णु महा यज्ञ दिवस 1"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
         </div>
@@ -646,10 +666,9 @@
         <!-- 🎬 Video 2 -->
         <div class="video-slide">
           <iframe 
-            src="https://www.youtube.com/embed/VIDEO_ID_2?rel=0&modestbranding=1&showinfo=0"
+            src="https://www.youtube.com/embed/nwUc6DRU86s?rel=0&modestbranding=1"
             title="श्री विष्णु महा यज्ञ दिवस 1 - भाग 2"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
         </div>
@@ -657,15 +676,14 @@
         <!-- 🎬 Video 3 -->
         <div class="video-slide">
           <iframe 
-            src="https://www.youtube.com/embed/VIDEO_ID_3?rel=0&modestbranding=1&showinfo=0"
+            src="https://www.youtube.com/embed/dce7Y9xLtbI?rel=0&modestbranding=1"
             title="श्री विष्णु महा यज्ञ दिवस 1 - भाग 3"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
         </div>
-
       </div>
+
       <button class="prev" onclick="moveSlide('carousel-day1-videos', -1)">❮</button>
       <button class="next" onclick="moveSlide('carousel-day1-videos', 1)">❯</button>
     </div>
@@ -680,13 +698,10 @@ const carousels = {};
 function initCarousels() {
   document.querySelectorAll('.carousel').forEach(c => {
     const track = c.querySelector('.carousel-track');
-    // ✅ Now it selects both images and video containers
     const slides = track.querySelectorAll('img, .video-slide');
     const id = c.id;
     carousels[id] = { index: 0, slides };
-
     slides.forEach((slide, i) => slide.style.display = i === 0 ? 'block' : 'none');
-    setInterval(() => moveSlide(id, 1), 5000);
   });
 }
 
@@ -696,12 +711,21 @@ function moveSlide(id, step) {
 
   const slides = c.slides;
   slides[c.index].style.display = 'none';
+
+  // pause video if switching
+  const currentIframe = slides[c.index].querySelector('iframe');
+  if (currentIframe) {
+    currentIframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+  }
+
   c.index = (c.index + step + slides.length) % slides.length;
   slides[c.index].style.display = 'block';
 }
 
 window.addEventListener('load', initCarousels);
 </script>
+
+
 
 
 
