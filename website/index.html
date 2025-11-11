@@ -593,7 +593,7 @@
             </div>
         </div>
     </section>
-   <!-- 🌸 यज्ञ गैलरी - दिनवार झलकियाँ -->
+<!-- 🌸 यज्ञ गैलरी - दिनवार झलकियाँ -->
 <section id="daily-gallery" style="text-align:center;margin:60px auto;max-width:1000px;">
   <h2 style="color:#800000;font-size:1.8em;">🌸 पवित्र क्षणों की झलकियाँ (दिनवार) 🌸</h2>
 
@@ -631,16 +631,40 @@
     <!-- 🎥 Video Carousel -->
     <div class="carousel" id="carousel-day1-videos">
       <div class="carousel-track">
-        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
+
+        <!-- 🎬 Video 1 -->
+        <div class="video-slide">
           <iframe 
             src="https://www.youtube.com/embed/S6QJio8BdnA?rel=0&modestbranding=1&showinfo=0"
             title="श्री विष्णु महा यज्ञ दिवस 1"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen>
           </iframe>
         </div>
+
+        <!-- 🎬 Video 2 -->
+        <div class="video-slide">
+          <iframe 
+            src="https://www.youtube.com/embed/VIDEO_ID_2?rel=0&modestbranding=1&showinfo=0"
+            title="श्री विष्णु महा यज्ञ दिवस 1 - भाग 2"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <!-- 🎬 Video 3 -->
+        <div class="video-slide">
+          <iframe 
+            src="https://www.youtube.com/embed/VIDEO_ID_3?rel=0&modestbranding=1&showinfo=0"
+            title="श्री विष्णु महा यज्ञ दिवस 1 - भाग 3"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+
       </div>
       <button class="prev" onclick="moveSlide('carousel-day1-videos', -1)">❮</button>
       <button class="next" onclick="moveSlide('carousel-day1-videos', 1)">❯</button>
@@ -656,7 +680,8 @@ const carousels = {};
 function initCarousels() {
   document.querySelectorAll('.carousel').forEach(c => {
     const track = c.querySelector('.carousel-track');
-    const slides = track.querySelectorAll('img, iframe');
+    // ✅ Now it selects both images and video containers
+    const slides = track.querySelectorAll('img, .video-slide');
     const id = c.id;
     carousels[id] = { index: 0, slides };
 
