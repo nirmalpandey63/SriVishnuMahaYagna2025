@@ -78,7 +78,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="styles.css?v=20251113">
+    <link rel="stylesheet" href="styles.css?v=20251111">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -154,7 +154,7 @@
                 <li><a href="#about">यज्ञ के बारे में</a></li>
                 <li><a href="#rituals">अनुष्ठान</a></li>
                 <li><a href="#registration">पंजीकरण</a></li>
-                <li><a href="#live">लाइव</a></li>
+                <li><a href="#live">कथा वीडियो गैलरी</a></li>
                 <li><a href="#gallery">गैलरी</a></li>
                 <li><a href="#contact">संपर्क</a></li>
                 <li><a href="#faq">FAQ</a></li>
@@ -488,41 +488,138 @@
         </div>
     </section>
 
-   <!-- 🌺 लाइव स्ट्रीमिंग (Live Streaming) -->
-<!-- 🌺 लाइव स्ट्रीमिंग (Live Streaming) -->
+   <!-- 🌺 भगवत कथा वीडियो गैलरी (7 Days Video Gallery) -->
 <section id="live" class="live-section">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">लाइव स्ट्रीमिंग</h2>
-      <p class="section-subtitle">घर बैठे यज्ञ का लाभ उठाएं</p>
+      <h2 class="section-title">भगवत कथा वीडियो गैलरी</h2>
+      <p class="section-subtitle">7 दिनों की पूर्ण भगवत कथा</p>
     </div>
 
-    <div class="live-content">
-      <div class="live-player" id="livePlayer">
-        <!-- 🎥 Embedded Live Stream -->
-        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;
-                    border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
-          <iframe 
-            src="https://www.youtube.com/embed/cnN5JFzY8a0?si=jgLeIgp-4tLu8Syg?rel=0&modestbranding=1&showinfo=0"
-            title="देवी निधि सरस्वती जी लाइव प्रवचन"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-            style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;">
-          </iframe>  
-        </div>
+    <div class="video-gallery-container">
+      <!-- Day Selection Tabs -->
+      <div class="day-tabs">
+        <button class="day-tab active" onclick="showDay(1)">दिन 1</button>
+        <button class="day-tab" onclick="showDay(2)">दिन 2</button>
+        <button class="day-tab" onclick="showDay(3)">दिन 3</button>
+        <button class="day-tab" onclick="showDay(4)">दिन 4</button>
+        <button class="day-tab" onclick="showDay(5)">दिन 5</button>
+        <button class="day-tab" onclick="showDay(6)">दिन 6</button>
+        <button class="day-tab" onclick="showDay(7)">दिन 7</button>
       </div>
 
-      <div class="live-schedule">
-        <h3>📅 प्रसारण समय</h3>
-        <div class="schedule-list">
-          <div class="schedule-time">
-            <span class="time">प्रातः 6:00 - 9:00</span>
-            <span class="event">प्रातःकालीन आरती और हवन</span>
+      <!-- Video Player Container -->
+      <div class="video-player-container">
+        <!-- Day 1 Video -->
+        <div id="day1" class="day-video active">
+          <div class="video-wrapper">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/tgxK0BCYGeI?si=qsxUSnIIPkT28G0s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe 
+              src="https://www.youtube.com/embed/tgxK0BCYGeI?si=1JqvuBSKTcjr_HAa?rel=0&modestbranding=1&showinfo=0"
+              title="भगवत कथा - दिन 1"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
           </div>
-          <div class="schedule-time">
-            <span class="time">सायं 6:00 - 8:00</span>
-            <span class="event">संध्या आरती और भजन</span>
+          <div class="video-info">
+            <h3>दिन 1: भगवान की महिमा</h3>
+          </div>
+        </div>
+
+        <!-- Day 2 Video -->
+        <div id="day2" class="day-video">
+          <div class="video-wrapper">
+            <iframe 
+              src="https://www.youtube.com/embed/0pdoIS3l-P4?si=OZQd0nSgxQmumQ1y?rel=0&modestbranding=1&showinfo=0"
+              title="भगवत कथा - दिन 2"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-info">
+            <h3>दिन 2: धर्म और कर्म</h3>
+          </div>
+        </div>
+
+        <!-- Day 3 Video -->
+        <div id="day3" class="day-video">
+          <div class="video-wrapper">
+            <iframe 
+              src="https://www.youtube.com/embed/Lne1mO-C1Q4?si=Zqxcl81juRbZVqAv?rel=0&modestbranding=1&showinfo=0"
+              title="भगवत कथा - दिन 3"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-info">
+            <h3>दिन 3: भक्ति और प्रेम</h3>
+          </div>
+        </div>
+
+        <!-- Day 4 Video -->
+        <div id="day4" class="day-video">
+          <div class="video-wrapper">
+            <iframe 
+              src="https://www.youtube.com/embed/tvHgwSIYlno?si=GimnO87T9pucUx8L?rel=0&modestbranding=1&showinfo=0"
+              title="भगवत कथा - दिन 4"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-info">
+            <h3>दिन 4: गीता का ज्ञान</h3>
+          </div>
+        </div>
+
+        <!-- Day 5 Video -->
+        <div id="day5" class="day-video">
+          <div class="video-wrapper">
+            <iframe 
+              src="https://www.youtube.com/embed/HMuiNPcU7kA?si=vB0CqR5mAhfeUFIQ?rel=0&modestbranding=1&showinfo=0"
+              title="भगवत कथा - दिन 5"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-info">
+            <h3>दिन 5: मोक्ष का मार्ग</h3>
+          </div>
+        </div>
+
+        <!-- Day 6 Video -->
+        <div id="day6" class="day-video">
+          <div class="video-wrapper">
+            <iframe 
+              src="https://www.youtube.com/embed/E767dra5Ggw?si=-x00yRLzotC62vCu?rel=0&modestbranding=1&showinfo=0"
+              title="भगवत कथा - दिन 6"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-info">
+            <h3>दिन 6: आध्यात्मिक उन्नति</h3>
+          </div>
+        </div>
+
+        <!-- Day 7 Video -->
+        <div id="day7" class="day-video">
+          <div class="video-wrapper">
+            <iframe 
+              src="https://www.youtube.com/embed/cnN5JFzY8a0?si=jgLeIgp-4tLu8Syg?rel=0&modestbranding=1&showinfo=0"
+              title="भगवत कथा - दिन 7"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-info">
+            <h3>दिन 7: पूर्णाहुति और आशीर्वाद</h3>
           </div>
         </div>
       </div>
@@ -655,6 +752,52 @@ document.addEventListener("DOMContentLoaded", function() {
     <!-- 🎥 Video Carousel -->
     <div class="carousel" id="carousel-day1-videos">
       <div class="carousel-track">
+        
+        <div class="video-slide">
+          <iframe 
+            src="https://www.youtube.com/embed/3qrUxnuwSts?rel=0&modestbranding=1"
+            title="श्री विष्णु महा यज्ञ दिवस 1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="video-slide">
+          <iframe 
+            src="https://www.youtube.com/embed/QJWxVn_zFPA?rel=0&modestbranding=1"
+            title="श्री विष्णु महा यज्ञ दिवस 1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="video-slide">
+          <iframe 
+            src="https://www.youtube.com/embed/jodIdun2cbQ?rel=0&modestbranding=1"
+            title="श्री विष्णु महा यज्ञ दिवस 1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="video-slide">
+          <iframe 
+            src="https://www.youtube.com/embed/S6QJio8BdnA?rel=0&modestbranding=1"
+            title="श्री विष्णु महा यज्ञ दिवस 1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="video-slide">
+          <iframe 
+            src="https://www.youtube.com/embed/S6QJio8BdnA?rel=0&modestbranding=1"
+            title="श्री विष्णु महा यज्ञ दिवस 1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        
         <!-- 🎬 Video 1 -->
         <div class="video-slide">
           <iframe 
@@ -1362,6 +1505,39 @@ window.addEventListener('load', initCarousels);
         });
     </script>
     <script>
+        // Video Gallery JavaScript
+        function showDay(dayNumber) {
+            // Hide all day videos
+            const allDayVideos = document.querySelectorAll('.day-video');
+            allDayVideos.forEach(video => {
+                video.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            const allTabs = document.querySelectorAll('.day-tab');
+            allTabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected day video
+            const selectedVideo = document.getElementById(`day${dayNumber}`);
+            if (selectedVideo) {
+                selectedVideo.classList.add('active');
+            }
+            
+            // Add active class to clicked tab
+            const allTabsArray = Array.from(allTabs);
+            const selectedTab = allTabsArray[dayNumber - 1];
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+        }
+
+        // Initialize first day on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            showDay(1);
+        });
+
         // Register Service Worker for PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
